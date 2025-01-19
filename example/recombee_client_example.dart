@@ -1,18 +1,22 @@
 import 'package:recombee_client/recombee_client.dart';
+import 'package:recombee_client/src/requests/recommend_items_to_item.dart';
 
 void main() async {
   final client = RecombeeClient(
-    databaseId: 'your database  id',
-    publicToken: 'your public token',
+    databaseId: 'bookido-dev',
+    publicToken:
+        '9v9UCjONSMeMXfAhP5B7hBKoF78Bj6plNiUJ6bq6GRuXpmYRFTlxbdgK4oMpybnB',
     useHttps: true,
   );
 
   try {
-    final request1 = AddDetailView(userId: 10, itemId: 1);
-    print(await client.send(request1));
+    final request = RecommendItemsToItem(
+      itemId: '1',
+      targetUserId: '1',
+      count: 3,
+    );
 
-    final request2 = AddCartAddition(userId: 10, itemId: 1);
-    print(await client.send(request2));
+    print(await client.send(request));
   } on RecombeResponseException catch (e) {
     print(e.toString());
   }

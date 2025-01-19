@@ -27,14 +27,13 @@ class RecombeeClient {
     _publicToken = publicToken;
     _useHttps = useHttps;
 
-    _baseUri = 'client-rapi.recombee.com';
+    _baseUri = 'client-rapi-eu-west.recombee.com';
   }
 
   Future<String> send(RecombeeRequest request) async {
     try {
       final signedUrl = signUrl(request.path);
       final url = ((_useHttps) ? 'https://' : 'http://') + _baseUri + signedUrl;
-
       late Future<http.Response> callRequest;
 
       switch (request.method) {
