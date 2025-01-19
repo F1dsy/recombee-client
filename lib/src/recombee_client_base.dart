@@ -46,6 +46,12 @@ class RecombeeClient {
             body: jsonEncode(request.requestBody()),
           );
           break;
+        case 'PUT':
+          callRequest = http.put(
+            url,
+            headers: _headers,
+          );
+          break;
         default:
           callRequest = http.get(
             url,

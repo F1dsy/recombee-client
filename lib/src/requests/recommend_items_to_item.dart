@@ -1,16 +1,8 @@
+import 'package:recombee_client/src/bindings/logic.dart';
+
 import 'recombee_request.dart';
 
 class RecommendItemsToItem extends RecombeeRequest {
-  final String itemId;
-  final String targetUserId;
-  final int count;
-  final String? scenario;
-  final bool? cascadeCreate;
-  final bool? returnProperties;
-  final List? includedProperties;
-  final String? filter;
-  final String? booster;
-
   RecommendItemsToItem({
     required this.itemId,
     required this.targetUserId,
@@ -21,8 +13,26 @@ class RecommendItemsToItem extends RecombeeRequest {
     this.includedProperties,
     this.filter,
     this.booster,
+    this.logic,
+    this.minRelevance,
+    this.rotationRate,
+    this.rotationTime,
     super.timeout = 3000,
   }) : super(method: 'GET');
+
+  final String itemId;
+  final String targetUserId;
+  final int count;
+  final String? scenario;
+  final bool? cascadeCreate;
+  final bool? returnProperties;
+  final List<String>? includedProperties;
+  final String? filter;
+  final String? booster;
+  final Logic? logic;
+  final String? minRelevance;
+  final double? rotationRate;
+  final double? rotationTime;
 
   @override
   Map<String, dynamic> requestBody() => {};
@@ -38,5 +48,9 @@ class RecommendItemsToItem extends RecombeeRequest {
           'includedProperties': includedProperties,
         if (filter != null) 'filter': filter,
         if (booster != null) 'booster': booster,
+        if (logic != null) 'logic': logic,
+        if (minRelevance != null) 'minRelevance': minRelevance,
+        if (rotationRate != null) 'rotationRate': rotationRate,
+        if (rotationTime != null) 'rotationTime': rotationTime,
       });
 }

@@ -1,11 +1,9 @@
 import 'package:recombee_client/src/bindings/logic.dart';
+import 'package:recombee_client/src/requests/recombee_request.dart';
 
-import 'recombee_request.dart';
-
-class RecommendItemsToItemSegment extends RecombeeRequest {
-  RecommendItemsToItemSegment({
-    required this.contextSegmentId,
-    required this.targetUserId,
+class RecommendItemsToUser extends RecombeeRequest {
+  RecommendItemsToUser({
+    required this.userId,
     required this.count,
     this.scenario,
     this.cascadeCreate,
@@ -18,10 +16,9 @@ class RecommendItemsToItemSegment extends RecombeeRequest {
     this.rotationRate,
     this.rotationTime,
     super.timeout = 3000,
-  }) : super(method: 'POST');
+  }) : super(method: 'GET');
 
-  final String contextSegmentId;
-  final String targetUserId;
+  final String userId;
   final int count;
   final String? scenario;
   final bool? cascadeCreate;
@@ -30,7 +27,7 @@ class RecommendItemsToItemSegment extends RecombeeRequest {
   final String? filter;
   final String? booster;
   final Logic? logic;
-  final double? minRelevance;
+  final String? minRelevance;
   final double? rotationRate;
   final double? rotationTime;
 
@@ -38,9 +35,7 @@ class RecommendItemsToItemSegment extends RecombeeRequest {
   Map<String, dynamic> requestBody() => {};
 
   @override
-  Uri get uri => Uri(path: '/recomms/item-segments/items/', queryParameters: {
-        'contextSegmentId': contextSegmentId,
-        'targetUserId': targetUserId,
+  Uri get uri => Uri(path: '/recomms/users/$userId/items/', queryParameters: {
         'count': count,
         if (scenario != null) 'scenario': scenario,
         if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,

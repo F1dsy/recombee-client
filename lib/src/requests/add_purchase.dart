@@ -1,12 +1,14 @@
-import 'recombee_request.dart';
+import 'package:recombee_client/src/requests/recombee_request.dart';
 
-class AddDetailView extends RecombeeRequest {
-  AddDetailView({
+class AddPurchase extends RecombeeRequest {
+  AddPurchase({
     required this.userId,
     required this.itemId,
     this.timestamp,
-    this.duration,
     this.cascadeCreate,
+    this.amount,
+    this.price,
+    this.profit,
     this.recommId,
     super.timeout = 3000,
   }) : super(method: 'POST');
@@ -14,8 +16,10 @@ class AddDetailView extends RecombeeRequest {
   final String userId;
   final String itemId;
   final String? timestamp;
-  final int? duration;
   final bool? cascadeCreate;
+  final double? amount;
+  final double? price;
+  final double? profit;
   final String? recommId;
 
   @override
@@ -23,11 +27,13 @@ class AddDetailView extends RecombeeRequest {
         'userId': userId,
         'itemId': itemId,
         if (timestamp != null) 'timestamp': timestamp,
-        if (duration != null) 'duration': duration,
         if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,
+        if (amount != null) 'amount': amount,
+        if (price != null) 'price': price,
+        if (profit != null) 'profit': profit,
         if (recommId != null) 'recommId': recommId,
       };
 
   @override
-  Uri get uri => Uri(path: '/detailviews/');
+  Uri get uri => Uri(path: '/purchases/');
 }
