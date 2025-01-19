@@ -9,8 +9,8 @@ class AddCartAddition extends RecombeeRequest {
     required this.userId,
     required this.itemId,
     this.options = const {},
-    int timeout = 3000,
-  }) : super('POST', '/cartadditions/', timeout);
+    super.timeout = 3000,
+  }) : super(method: 'POST');
 
   @override
   Map<String, dynamic> requestBody() {
@@ -20,4 +20,7 @@ class AddCartAddition extends RecombeeRequest {
       ...options,
     };
   }
+
+  @override
+  Uri get uri => Uri(path: '/cartadditions/');
 }

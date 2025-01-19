@@ -1,13 +1,12 @@
 abstract class RecombeeRequest {
-  String path;
-  String method;
-  int timeout;
+  RecombeeRequest({
+    required this.method,
+    required this.timeout,
+  });
+  final String method;
+  final int timeout;
 
-  RecombeeRequest(
-    this.method,
-    this.path,
-    this.timeout,
-  );
+  Uri get uri;
 
   Map<String, dynamic> requestBody();
 }

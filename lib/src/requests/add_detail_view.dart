@@ -1,14 +1,14 @@
 import 'recombee_request.dart';
 
 class AddDetailView extends RecombeeRequest {
-  dynamic userId;
-  dynamic itemId;
+  final String userId;
+  final String itemId;
 
   AddDetailView({
     required this.userId,
     required this.itemId,
-    int timeout = 3000,
-  }) : super('POST', '/detailviews/', timeout);
+    super.timeout = 3000,
+  }) : super(method: 'POST');
 
   @override
   Map<String, dynamic> requestBody() {
@@ -17,4 +17,7 @@ class AddDetailView extends RecombeeRequest {
       'itemId': itemId,
     };
   }
+
+  @override
+  Uri get uri => Uri(path: '/detailviews/');
 }

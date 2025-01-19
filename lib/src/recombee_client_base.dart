@@ -8,45 +8,47 @@ import 'package:recombee_client/src/exceptions/recombee_response_exception.dart'
 import 'requests/recombee_request.dart';
 
 class RecombeeClient {
-  late String _databaseId;
-  late String _publicToken;
-  late String _baseUri;
-  late bool _useHttps;
+  final String _databaseId;
+  final String _publicToken;
+  final String _baseUri;
+  final bool _useHttps;
 
   final Map<String, String> _headers = {
     'Accept': 'application/json',
-    'Content-Type': 'text/plain',
+    'Content-Type': 'application/json',
   };
 
   RecombeeClient({
     required String databaseId,
     required String publicToken,
-    bool useHttps = false,
-  }) {
-    _databaseId = databaseId;
-    _publicToken = publicToken;
-    _useHttps = useHttps;
-
-    _baseUri = 'client-rapi-eu-west.recombee.com';
-  }
+    String baseUri = 'client-rapi.recombee.com',
+    bool useHttps = true,
+  })  : _databaseId = databaseId,
+        _publicToken = publicToken,
+        _baseUri = baseUri,
+        _useHttps = useHttps;
 
   Future<String> send(RecombeeRequest request) async {
     try {
-      final signedUrl = signUrl(request.path);
-      final url = ((_useHttps) ? 'https://' : 'http://') + _baseUri + signedUrl;
+      final signedUrl = signUrl(request.uri);
+      final url = signedUrl.replace(
+        scheme: _useHttps ? 'https' : 'http',
+        host: _baseUri,
+      );
+
       late Future<http.Response> callRequest;
 
       switch (request.method) {
         case 'POST':
           callRequest = http.post(
-            Uri.parse(url),
+            url,
             headers: _headers,
             body: jsonEncode(request.requestBody()),
           );
           break;
         default:
           callRequest = http.get(
-            Uri.parse(url),
+            url,
             headers: _headers,
           );
       }
@@ -73,20 +75,25 @@ class RecombeeClient {
     }
   }
 
-  String signUrl(req_part) {
-    var url = '/' + _databaseId + req_part;
+  Uri signUrl(Uri path) {
+    var url = path.replace(path: '/$_databaseId${path.path}');
 
-    url += (!url.contains('?') ? '?' : '&') +
-        'frontend_timestamp=' +
-        '${(DateTime.now().millisecondsSinceEpoch ~/ 1000)}';
+    url = url.replace(queryParameters: {
+      ...url.queryParameters,
+      'frontend_timestamp':
+          (DateTime.now().millisecondsSinceEpoch ~/ 1000).toString(),
+    });
 
     final keys = utf8.encode(_publicToken);
-    final urlBytes = utf8.encode(url);
+    final urlBytes = utf8.encode(url.toString());
 
     final hmacSha1 = Hmac(sha1, keys);
     final digest = hmacSha1.convert(urlBytes);
 
-    url = url + '&frontend_sign=' + digest.toString();
+    url = url.replace(queryParameters: {
+      ...url.queryParameters,
+      'frontend_sign': digest.toString(),
+    });
 
     return url;
   }

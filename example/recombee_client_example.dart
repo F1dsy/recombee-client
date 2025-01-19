@@ -13,7 +13,7 @@ void main() async {
     final request = RecommendItemsToItem(
       itemId: '1',
       targetUserId: '1',
-      count: 3,
+      count: 1,
     );
 
     print(await client.send(request));
