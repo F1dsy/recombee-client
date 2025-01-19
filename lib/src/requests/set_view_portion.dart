@@ -37,4 +37,3 @@ class SetViewPortion extends RecombeeRequest {
   @override
   Uri get uri => Uri(path: '/viewportions/');
 }
-

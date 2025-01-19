@@ -3,9 +3,8 @@ import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
-import 'package:recombee_client/src/exceptions/recombee_response_exception.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-import 'requests/recombee_request.dart';
 
 class RecombeeClient {
   final String _databaseId;
@@ -28,7 +27,7 @@ class RecombeeClient {
         _baseUri = baseUri,
         _useHttps = useHttps;
 
-  Future<String> send(RecombeeRequest request) async {
+  Future<RecombeeResponse> send(RecombeeRequest request) async {
     try {
       final signedUrl = signUrl(request.uri);
       final url = signedUrl.replace(
@@ -61,8 +60,17 @@ class RecombeeClient {
 
       final response = await callRequest;
 
+      if (response.statusCode == 201) {
+        return RecombeeResponse();
+      }
+
       if (response.statusCode == 200) {
-        return response.body;
+        final responseBody = jsonDecode(response.body);
+        if (request is RecombeeRequest<RecommendationResponse>) {
+          return RecommendationResponse.fromJson(responseBody);
+        } else {
+          return RecombeeResponse();
+        }
       } else {
         final responseBody = jsonDecode(response.body);
 

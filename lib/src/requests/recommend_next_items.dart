@@ -1,6 +1,6 @@
-import 'recombee_request.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-class RecommendNextItems extends RecombeeRequest {
+class RecommendNextItems extends RecombeeRequest<RecommendationResponse> {
   RecommendNextItems({
     required this.recommId,
     required this.count,

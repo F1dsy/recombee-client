@@ -1,5 +1,4 @@
 import 'package:recombee_client/recombee_client.dart';
-import 'package:recombee_client/src/requests/recommend_items_to_item.dart';
 
 void main() async {
   final client = RecombeeClient(

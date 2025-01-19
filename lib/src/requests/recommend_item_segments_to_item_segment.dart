@@ -1,8 +1,7 @@
-import 'package:recombee_client/src/bindings/Logic.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-import 'recombee_request.dart';
-
-class RecommendItemSegmentsToItemSegment extends RecombeeRequest {
+class RecommendItemSegmentsToItemSegment
+    extends RecombeeRequest<RecommendationResponse> {
   RecommendItemSegmentsToItemSegment({
     required this.contextSegmentId,
     required this.targetUserId,

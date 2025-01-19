@@ -1,4 +1,4 @@
-abstract class RecombeeRequest {
+abstract class RecombeeRequest<ResponseType> {
   RecombeeRequest({
     required this.method,
     required this.timeout,

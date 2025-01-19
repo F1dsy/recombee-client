@@ -1,8 +1,6 @@
-import 'package:recombee_client/src/bindings/Logic.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-import 'recombee_request.dart';
-
-class SearchItemsSegements extends RecombeeRequest {
+class SearchItemsSegements extends RecombeeRequest<RecommendationResponse> {
   SearchItemsSegements({
     required this.searchQuery,
     required this.userId,

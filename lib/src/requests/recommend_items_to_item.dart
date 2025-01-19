@@ -1,8 +1,6 @@
-import 'package:recombee_client/src/bindings/logic.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-import 'recombee_request.dart';
-
-class RecommendItemsToItem extends RecombeeRequest {
+class RecommendItemsToItem extends RecombeeRequest<RecommendationResponse> {
   RecommendItemsToItem({
     required this.itemId,
     required this.targetUserId,

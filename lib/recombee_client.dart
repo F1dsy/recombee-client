@@ -27,3 +27,6 @@ export 'src/requests/set_view_portion.dart';
 export 'src/exceptions/recombee_response_exception.dart';
 
 export 'src/bindings/logic.dart';
+export 'src/bindings/recombee_response.dart';
+export 'src/bindings/recommendation.dart';
+export 'src/bindings/recommendation_response.dart';
