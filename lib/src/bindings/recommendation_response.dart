@@ -30,4 +30,9 @@ class RecommendationResponse extends RecombeeResponse {
       abGroup: json['abGroup'],
     );
   }
+
+  @override
+  String toString() {
+    return 'RecommendationResponse(recommId: $recommId, recomms: $recomms, numberNextRecommsCalls: $numberNextRecommsCalls, abGroup: $abGroup)';
+  }
 }

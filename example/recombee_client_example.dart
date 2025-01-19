@@ -14,8 +14,9 @@ void main() async {
       targetUserId: '1',
       count: 1,
     );
-
-    print(await client.send(request));
+    final reponse = await client.send(request);
+    print(reponse);
+    print(reponse.recomms.first);
   } on RecombeResponseException catch (e) {
     print(e.toString());
   }

@@ -5,7 +5,6 @@ import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
 import 'package:recombee_client/recombee_client.dart';
 
-
 class RecombeeClient {
   final String _databaseId;
   final String _publicToken;
@@ -27,7 +26,8 @@ class RecombeeClient {
         _baseUri = baseUri,
         _useHttps = useHttps;
 
-  Future<RecombeeResponse> send(RecombeeRequest request) async {
+  Future<ResponseType> send<ResponseType extends RecombeeResponse>(
+      RecombeeRequest<ResponseType> request) async {
     try {
       final signedUrl = signUrl(request.uri);
       final url = signedUrl.replace(
@@ -61,15 +61,15 @@ class RecombeeClient {
       final response = await callRequest;
 
       if (response.statusCode == 201) {
-        return RecombeeResponse();
+        return RecombeeResponse() as ResponseType;
       }
 
       if (response.statusCode == 200) {
         final responseBody = jsonDecode(response.body);
         if (request is RecombeeRequest<RecommendationResponse>) {
-          return RecommendationResponse.fromJson(responseBody);
+          return RecommendationResponse.fromJson(responseBody) as ResponseType;
         } else {
-          return RecombeeResponse();
+          return RecombeeResponse() as ResponseType;
         }
       } else {
         final responseBody = jsonDecode(response.body);

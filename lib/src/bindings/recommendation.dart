@@ -26,4 +26,9 @@ class Recommendation {
       values: json['values'],
     );
   }
+
+  @override
+  String toString() {
+    return 'Recommendation(id: $id, values: $values)';
+  }
 }
