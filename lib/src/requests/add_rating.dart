@@ -1,4 +1,4 @@
-import 'package:recombee_client/recombee_client.dart';
+import 'package:recombee_client/src/requests/recombee_request.dart';
 
 class AddRating extends RecombeeRequest {
   final String userId;
