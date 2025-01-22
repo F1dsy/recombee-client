@@ -26,10 +26,10 @@ class SetViewPortion extends RecombeeRequest {
   Map<String, dynamic> requestBody() => {
         'userId': userId,
         'itemId': itemId,
-        'portion': portion,
+        'portion': portion.toString(),
         if (sessionId != null) 'sessionId': sessionId,
         if (timestamp != null) 'timestamp': timestamp,
-        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,
+        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
         if (recommId != null) 'recommId': recommId,
         if (additionalData != null) 'additionalData': additionalData,
       };

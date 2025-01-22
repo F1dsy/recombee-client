@@ -18,6 +18,6 @@ class MergeUsers extends RecombeeRequest {
   @override
   Uri get uri =>
       Uri(path: '/users/$targetUserId/merge/$sourceUserId', queryParameters: {
-        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,
+        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
       });
 }

@@ -34,9 +34,8 @@ class SearchItems extends RecombeeRequest<RecommendationResponse> {
           'count': count.toString(),
           if (scenario != null) 'scenario': scenario,
           if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
-          if (returnProperties != null) 'returnProperties': returnProperties,
-          if (includedProperties != null)
-            'includedProperties': includedProperties,
+          if (returnProperties != null) 'returnProperties': returnProperties.toString(),
+          if (includedProperties != null) 'includedProperties': includedProperties?.join(','),
           if (filter != null) 'filter': filter,
           if (booster != null) 'booster': booster,
           if (logic != null) 'logic': logic.toString(),

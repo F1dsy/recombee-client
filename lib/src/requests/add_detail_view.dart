@@ -23,8 +23,8 @@ class AddDetailView extends RecombeeRequest {
         'userId': userId,
         'itemId': itemId,
         if (timestamp != null) 'timestamp': timestamp,
-        if (duration != null) 'duration': duration,
-        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,
+        if (duration != null) 'duration': duration.toString(),
+        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
         if (recommId != null) 'recommId': recommId,
       };
 

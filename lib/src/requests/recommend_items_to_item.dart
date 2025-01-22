@@ -40,15 +40,16 @@ class RecommendItemsToItem extends RecombeeRequest<RecommendationResponse> {
         'targetUserId': targetUserId,
         'count': count.toString(),
         if (scenario != null) 'scenario': scenario,
-        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,
-        if (returnProperties != null) 'returnProperties': returnProperties,
+        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
+        if (returnProperties != null)
+          'returnProperties': returnProperties.toString(),
         if (includedProperties != null)
-          'includedProperties': includedProperties,
+          'includedProperties': includedProperties?.join(','),
         if (filter != null) 'filter': filter,
         if (booster != null) 'booster': booster,
-        if (logic != null) 'logic': logic,
+        if (logic != null) 'logic': logic.toString(),
         if (minRelevance != null) 'minRelevance': minRelevance,
-        if (rotationRate != null) 'rotationRate': rotationRate,
-        if (rotationTime != null) 'rotationTime': rotationTime,
+        if (rotationRate != null) 'rotationRate': rotationRate.toString(),
+        if (rotationTime != null) 'rotationTime': rotationTime.toString(),
       });
 }

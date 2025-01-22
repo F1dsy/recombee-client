@@ -25,9 +25,9 @@ class AddCartAddition extends RecombeeRequest {
         'userId': userId,
         'itemId': itemId,
         if (timestamp != null) 'timestamp': timestamp,
-        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,
-        if (amount != null) 'amount': amount,
-        if (price != null) 'price': price,
+        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
+        if (amount != null) 'amount': amount.toString(),
+        if (price != null) 'price': price.toString(),
         if (recommId != null) 'recommId': recommId,
       };
 

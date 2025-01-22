@@ -22,9 +22,9 @@ class AddRating extends RecombeeRequest {
   Map<String, dynamic> requestBody() => {
         'userId': userId,
         'itemId': itemId,
-        'rating': rating,
+        'rating': rating.toString(),
         if (timestamp != null) 'timestamp': timestamp.toString(),
-        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,
+        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
         if (recommId != null) 'recommId': recommId,
       };
 

@@ -9,10 +9,11 @@ void main() async {
   );
 
   try {
-    final request = RecommendItemsToItem(
-      itemId: '1',
-      targetUserId: '1',
+    final request = RecommendItemsToUser(
+      userId: '1',
       count: 1,
+      rotationRate: 0.2,
+      cascadeCreate: true,
     );
     final reponse = await client.send(request);
     print(reponse);

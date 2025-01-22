@@ -1,9 +1,4 @@
-/*
- This file is auto-generated, do not edit
-*/
-
 import 'package:recombee_client/recombee_client.dart';
-import 'package:recombee_client/src/requests/recombee_request.dart';
 
 class AddBookmark extends RecombeeRequest {
   final String userId;
@@ -29,7 +24,7 @@ class AddBookmark extends RecombeeRequest {
         'userId': userId,
         'itemId': itemId,
         if (timestamp != null) 'timestamp': timestamp,
-        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate,
+        if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
         if (recommId != null) 'recommId': recommId,
       };
 }
