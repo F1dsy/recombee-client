@@ -14,10 +14,10 @@ void main() async {
       count: 1,
       rotationRate: 0.2,
       cascadeCreate: true,
+      returnProperties: true,
     );
     final reponse = await client.send(request);
     print(reponse);
-    print(reponse.recomms.first);
   } on RecombeResponseException catch (e) {
     print(e.toString());
   }

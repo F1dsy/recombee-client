@@ -1,10 +1,9 @@
-
 import 'package:recombee_client/recombee_client.dart';
 
-class RecommendItemSegmentsToUser extends RecombeeRequest<RecommendationResponse> {
+class RecommendItemSegmentsToUser
+    extends RecombeeRequest<RecommendationResponse> {
   RecommendItemSegmentsToUser({
     required this.userId,
-    required this.targetUserId,
     required this.count,
     this.scenario,
     this.cascadeCreate = true,
@@ -15,7 +14,6 @@ class RecommendItemSegmentsToUser extends RecombeeRequest<RecommendationResponse
   }) : super(method: 'GET');
 
   final String userId;
-  final String targetUserId;
   final int count;
   final String? scenario;
   final bool? cascadeCreate;
@@ -27,7 +25,6 @@ class RecommendItemSegmentsToUser extends RecombeeRequest<RecommendationResponse
   Uri get uri => Uri(
         path: '/recomms/users/$userId/item-segments/',
         queryParameters: {
-          'targetUserId': targetUserId,
           'count': count.toString(),
           if (scenario != null) 'scenario': scenario,
           if (cascadeCreate != null) 'cascadeCreate': cascadeCreate.toString(),
