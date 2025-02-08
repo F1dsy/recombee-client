@@ -1,6 +1,6 @@
-import 'recombee_request.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-class Batch extends RecombeeRequest {
+class Batch extends RecombeeRequest<RecombeeResponse> {
   Batch({
     required this.requests,
     this.distinctRecomms,

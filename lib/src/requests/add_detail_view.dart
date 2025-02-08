@@ -1,6 +1,6 @@
-import 'recombee_request.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-class AddDetailView extends RecombeeRequest {
+class AddDetailView extends RecombeeRequest<RecombeeResponse> {
   AddDetailView({
     required this.userId,
     required this.itemId,

@@ -1,6 +1,6 @@
-import 'package:recombee_client/src/requests/recombee_request.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-class AddPurchase extends RecombeeRequest {
+class AddPurchase extends RecombeeRequest<RecombeeResponse> {
   AddPurchase({
     required this.userId,
     required this.itemId,

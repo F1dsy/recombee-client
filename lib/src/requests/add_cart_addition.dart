@@ -1,6 +1,6 @@
-import 'recombee_request.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-class AddCartAddition extends RecombeeRequest {
+class AddCartAddition extends RecombeeRequest<RecombeeResponse> {
   AddCartAddition({
     required this.userId,
     required this.itemId,

@@ -1,6 +1,6 @@
 import 'package:recombee_client/recombee_client.dart';
 
-class AddBookmark extends RecombeeRequest {
+class AddBookmark extends RecombeeRequest<RecombeeResponse> {
   final String userId;
   final String itemId;
   final String? timestamp;

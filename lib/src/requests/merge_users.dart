@@ -1,6 +1,6 @@
-import 'package:recombee_client/src/requests/recombee_request.dart';
+import 'package:recombee_client/recombee_client.dart';
 
-class MergeUsers extends RecombeeRequest {
+class MergeUsers extends RecombeeRequest<RecombeeResponse> {
   MergeUsers({
     required this.targetUserId,
     required this.sourceUserId,

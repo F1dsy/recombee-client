@@ -4,7 +4,7 @@ class RecombeResponseException implements Exception {
   final StackTrace? stackTrace;
 
   const RecombeResponseException({
-    this.message = 'Terjadi kesalahan!',
+    this.message = 'Recombee response exception',
     this.code = 0,
     this.stackTrace,
   });
